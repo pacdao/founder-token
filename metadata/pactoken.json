@@ -1,0 +1,12 @@
+{
+    "name": "PAC DAO FOUNDER TOKEN",
+    "description": "Early Supporter of Crypto Activism",
+    "external_link": "http://pac.xyz/",
+    "image": "ipfs://QmPqtRL6PXfCSHhgouTk6tHAoC3VzRGutybwqjiJWLyKpo",
+    "attributes": [
+        {
+            "trait_type": "Founder",
+            "value": 1
+        }
+    ]
+}
