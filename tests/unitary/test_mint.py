@@ -2,8 +2,13 @@ import brownie
 from brownie import Wei, history
 
 
-def test_first_id_is_zero(founder):
-    assert founder.currentId() == 0
+def test_airdrop_reserves_10(founder):
+    assert founder.currentId() == 10
+
+
+def test_deployer_received_10(founder, alice):
+    for i in range(10):
+        assert founder.ownerOf(i) == alice
 
 
 def test_first_price_is_floor(founder, floor_price):
