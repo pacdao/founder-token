@@ -8,7 +8,7 @@ def test_airdrop_reserves_10(founder):
 
 def test_deployer_received_10(founder, alice):
     for i in range(10):
-        assert founder.ownerOf(i) == alice
+        assert founder.ownerOf(1+i) == alice
 
 
 def test_first_price_is_floor(founder, floor_price):
@@ -24,12 +24,15 @@ def test_floor_price_updates_on_large_mint(founder, alice, floor_price, step_pri
     assert founder.minPrice() == floor_price + step_price * 11
 
 
-def test_id_updates_on_mint(founder_minted):
-    assert founder_minted.currentId() == 1
+def test_id_updates_on_mint(founder, bob):
+    first_id = founder.currentId()
+    founder.mint({'from': bob, 'value': founder.minPrice()})
+    assert founder.currentId() == first_id + 1
 
 
-def test_assert_token_received(founder_minted, alice):
-    assert founder_minted.ownerOf(1) == alice
+def test_assert_token_received(founder, bob):
+    founder.mint({'from': bob, 'value': founder.minPrice()})
+    assert founder.ownerOf(founder.currentId()) == bob
 
 
 def test_cannot_mint_lower_amount(founder, alice, floor_price):
