@@ -23,12 +23,12 @@ def bob(accounts):
 
 @pytest.fixture(scope="module")
 def floor_price():
-    return Wei("1 gwei")
+    return Wei(".0001 ether")
+
 
 @pytest.fixture(scope="module")
 def step_price():
-    return Wei("1 gwei")
-
+    return Wei(".0001 ether")
 
 
 @pytest.fixture(scope="module")
@@ -38,5 +38,5 @@ def founder(alice, floor_price, step_price):
 
 @pytest.fixture(scope="module")
 def founder_minted(alice, founder, floor_price):
-    founder.mint({"from": alice, "value": floor_price })
+    founder.mint({"from": alice, "value": floor_price})
     return founder
