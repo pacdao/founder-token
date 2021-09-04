@@ -2,7 +2,6 @@
 pragma solidity 0.6.6;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-//import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract PACFounder is ERC721 {
     uint256 public minPrice;
@@ -16,10 +15,7 @@ contract PACFounder is ERC721 {
 		minStep = _minStep;
 		beneficiary = _beneficiary;
 		_setBaseURI("ipfs://");
-		for(uint i = 1; i <= 10; i++) {
-			_safeMint(beneficiary, i);
-		}
-        	currentId = 10;
+
     }
     function mint() public payable
 	{
@@ -30,6 +26,10 @@ contract PACFounder is ERC721 {
 		uint _target = minPrice * 1075000000000000000 / 1e18;
 		if(_target - minPrice < minStep) {
 			_target = minPrice + minStep;
+		}
+		if(currentId < 20) {
+			currentId += 1;
+			_safeMint(beneficiary, currentId);
 		}
 
 		if(msg.value > _target) {
@@ -62,9 +62,4 @@ function withdraw() public
 receive() external payable { }
 fallback() external payable { }
 
-/*
-function recoverERC20(address tokenAddress, uint256 tokenAmount) public {
-	IERC20(tokenAddress).transfer(beneficiary, tokenAmount);
-}
-*/
 }
