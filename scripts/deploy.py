@@ -18,10 +18,10 @@ def main():
         z = accounts.load('zcroo')
         deployer = accounts.load('minnow')
 
-        z.transfer(deployer, .2 * 10 ** 18)
+        z.transfer(deployer, .25 * 10 ** 18)
            
     else:
         deployer = accounts.load('husky')
         publish_source = True
     
-    return PACFounder.deploy(Wei('.0001 ether'), Wei('.0001 ether'), beneficiary_address, {"from": deployer}, publish_source=publish_source)
+    return PACFounder.deploy(beneficiary_address, {"from": deployer}, publish_source=publish_source)

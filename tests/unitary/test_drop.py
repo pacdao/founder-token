@@ -21,8 +21,8 @@ def test_mint_100_between_dot1_to_1_eth(founder):
 
 
 def test_deploy_price_reasonable(founder):
-    assert history[-1].gas_used * Wei("50 gwei") / 10 ** 18 < 0.2
+    assert history[-1].gas_used * Wei("50 gwei") / 10 ** 18 < 0.11155015
 
 
 def test_non_beneficiary_can_deploy(alice, bob, floor_price, step_price):
-    PACFounder.deploy(floor_price, step_price, bob, {"from": alice})
+    PACFounder.deploy(bob, {"from": alice})

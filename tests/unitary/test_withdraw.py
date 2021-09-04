@@ -1,18 +1,26 @@
 import brownie
 
 
-def test_can_withdraw_as_alice(founder_minted, alice, floor_price):
+def test_can_withdraw_as_alice(founder_minted, alice, bob):
+    founder_minted.withdraw({"from": alice})
     init_balance = alice.balance()
+
+    mint_price = founder_minted.minPrice() * 10
+    founder_minted.mint({'from': bob, value: mint_price})
     founder_minted.withdraw({"from": alice})
     final_balance = alice.balance()
-    assert final_balance - init_balance == floor_price
+    assert final_balance - init_balance == mint_price
 
 
-def test_can_withdraw_as_bob(founder_minted, alice, floor_price, bob):
+def test_can_withdraw_as_bob(founder_minted, alice, bob):
+    founder_minted.withdraw({"from": alice})
     init_balance = alice.balance()
+
+    mint_price = founder_minted.minPrice() * 10
+    founder_minted.mint({'from': bob, value: mint_price})
     founder_minted.withdraw({"from": bob})
     final_balance = alice.balance()
-    assert final_balance - init_balance == floor_price
+    assert final_balance - init_balance == mint_price
 
 
 def test_bob_gets_nothing_on_withdraw(founder_minted, bob):

@@ -33,10 +33,11 @@ def step_price():
 
 @pytest.fixture(scope="module")
 def founder(alice, floor_price, step_price):
-    return PACFounder.deploy(floor_price, step_price, alice, {"from": alice})
+    return PACFounder.deploy(alice, {"from": alice})
 
 
-@pytest.fixture(scope="module")
-def founder_minted(alice, founder, floor_price):
-    founder.mint({"from": alice, "value": floor_price})
+@pytest.fixture(scope="function")
+def founder_minted(accounts, founder, floor_price):
+    for i in range(10):
+        founder.mint({"from": accounts[i], "value": founder.minPrice()})
     return founder

@@ -2,7 +2,8 @@ import brownie
 from brownie_tokens import MintableForkToken
 
 
-def test_mints_with_updated_metadata(founder, alice):
+def test_mints_with_updated_metadata(founder_minted, alice):
+    founder = founder_minted
     new_data = "new_uri"
     founder.setDefaultMetadata(new_data, {"from": alice})
     founder.mint({"from": alice, "value": founder.minPrice()})
@@ -23,7 +24,8 @@ def test_new_owner_can_withdraw(founder_minted, alice, bob):
     assert bob.balance() > bob_init
 
 
-def test_new_owner_can_update_metadata(founder, alice, bob):
+def test_new_owner_can_update_metadata(founder_minted, alice, bob):
+    founder = founder_minted
     founder.updateBeneficiary(bob, {"from": alice})
     new_data = "new uri"
     founder.setDefaultMetadata(new_data, {"from": bob})
