@@ -22,3 +22,4 @@ In reality these numbers could be higher if whales choose to accelerate the floo
 
 Assuming everybody just mints at floor price, the badge will be cheaper than gas for about the first 50 coins.  By NFT 100, the token will cost about half an ETH.  By 200, only millionaires will be able to afford it.  By 300, only billionaires will be able to afford it.  The theoretical cap is some number shortly thereafter when overflow errors would prevent minting.  Practically, it would be a pleasant surprise if a hundred get minted.
 
+Live at: [https://etherscan.io/address/0x63994b223f01b943eff986b1b379312508dc15f8](0x63994b223f01b943eff986b1b379312508dc15f8)
